@@ -1,0 +1,44 @@
+[submodule "vim-janus/.janus/csapprox"]
+	path = vim-janus/.janus/csapprox
+	url = https://github.com/godlygeek/csapprox
+	branch = master
+[submodule "vim-janus/.janus/delimitmate"]
+	path = vim-janus/.janus/delimitmate
+	url = https://github.com/Raimondi/delimitmate
+	branch = master
+[submodule "vim-janus/.janus/gruvbox"]
+	path = vim-janus/.janus/gruvbox
+	url = https://github.com/morhetz/gruvbox
+	branch = master
+[submodule "vim-janus/.janus/slimux"]
+	path = vim-janus/.janus/slimux
+	url = https://github.com/epeli/slimux
+	branch = master
+[submodule "vim-janus/.janus/vim-airline"]
+	path = vim-janus/.janus/vim-airline
+	url = https://github.com/bling/vim-airline
+	branch = master
+[submodule "vim-janus/.janus/vim-indent-guides"]
+	path = vim-janus/.janus/vim-indent-guides
+	url = https://github.com/nathanaelkane/vim-indent-guides
+	branch = master
+[submodule "vim-janus/.janus/xmledit"]
+	path = vim-janus/.janus/xmledit
+	url = https://github.com/sukima/xmledit
+	branch = master
+[submodule "vim-janus/.vim"]
+	path = vim-janus/.vim
+	url = https://github.com/carlhuda/janus
+	branch = master
+[submodule "tmux/.tmux/plugins/tpm"]
+	path = tmux/.tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm
+	branch = master
+[submodule "oh-my-zsh/.oh-my-zsh"]
+	path = oh-my-zsh/.oh-my-zsh
+	url = https://github.com/robbyrussell/oh-my-zsh
+	branch = master
+[submodule "spacemacs-emacs/.emacs.d"]
+	path = spacemacs-emacs/.emacs.d
+	url = https://github.com/syl20bnr/spacemacs
+	branch = master

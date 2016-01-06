@@ -1,0 +1,8 @@
+let mapleader = ","
+
+let language_plugins_disabled = ['clojure', 'coffeescript', 'cucumber', 'elixir', 'haml', 'haskell', 'less' , 'liquid', 'scala', 'scss', 'slim', 'textile', 'erlang']
+let tools_plugins_disabled = ['eunuch', 'gist', 'indent-object', 'matchit', 'tagbar', 'vroom', 'ack']
+
+for plugin in language_plugins_disabled + tools_plugins_disabled
+    call janus#disable_plugin(plugin)
+endfor
