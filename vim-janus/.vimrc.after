@@ -1,0 +1,118 @@
+set wrap
+set smartindent
+set tabstop=8 softtabstop=4
+set shiftwidth=4
+set list lcs=tab:__,trail:.,extends:>,precedes:<
+
+set expandtab
+set showmatch
+set hlsearch
+set ignorecase
+set smartcase
+
+"color Tomorrow-Night-Eighties
+
+set cursorline
+set hlsearch
+set viminfo^=!
+
+""from https://amix.dk/vim/vimrc.html
+" Set 7 lines to the cursor - when moving vertically using j/k
+set so=7
+
+" Configure backspace so it acts as it should act
+set backspace=eol,start,indent
+set whichwrap+=<,>,h,l
+
+" Makes search act like search in modern browsers
+set incsearch
+
+" Don't redraw while executing macros (good performance config)
+set lazyredraw
+
+" For regular expressions turn magic on
+set magic
+
+" Be smart when using tabs ;)
+set smarttab
+
+set autoindent
+
+
+let NERDSpaceDelims=1
+
+"delimitmate configuration
+let delimitMate_expand_cr = 1
+augroup mydelimitMate
+  au!
+  au FileType markdown let b:delimitMate_nesting_quotes = ["`"]
+  au FileType tex let b:delimitMate_quotes = "
+  au FileType tex let b:delimitMate_matchpairs = "(:),[:],{:},`:'"
+  au FileType python let b:delimitMate_nesting_quotes = ['"', "'"]
+augroup END"'"'"]"'"]
+au FileType javascript setl sw=2 sts=2 et
+
+let g:AutoClosePairs = {'(': ')', '{': '}', '[': ']', '"': '"', "'": "'", '#{': '}'}
+let g:AutoCloseProtectedRegions = ["Character"]
+
+"let g:syntastic_javascript_checkers = ['eslint']
+"let g:syntastic_json_checkers = ['jsonlint']
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
+
+"Syntastic recommended settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+"Syntastic custom settings
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_json_checkers = ['jsonlint']
+
+let g:gitgutter_eager = 0
+let g:gitgutter_signs = 0
+
+if !has("gui_running")
+           let g:gruvbox_italic=0
+endif
+colorscheme gruvbox
+"colorscheme zenburn
+"colorscheme wombat256
+"colorscheme Tomorrow-Night-Eighties
+"colorscheme solarized
+"colorscheme molokai
+set background=dark
+set t_Co=256
+let g:nrrw_rgn_wdth = 40
+
+source ~/.vimrc.tmux
+
+"nnoremap <silent> [oh :call gruvbox#hls_show()<CR>
+"nnoremap <silent> ]oh :call gruvbox#hls_hide()<CR>
+"nnoremap <silent> coh :call gruvbox#hls_toggle()<CR>
+
+"nnoremap * :let @/ = ""<CR>:call gruvbox#hls_show()<CR>*
+"nnoremap / :let @/ = ""<CR>:call gruvbox#hls_show()<CR>/
+"nnoremap ? :let @/ = ""<CR>:call gruvbox#hls_show()<CR>?
+
+
+
+nnoremap <Leader>l :ls<CR>
+nnoremap <Leader>[  :bn<CR>
+nnoremap <Leader>]  :bp<CR>
+nnoremap <Leader>1 :1b<CR>
+nnoremap <Leader>2 :2b<CR>
+nnoremap <Leader>3 :3b<CR>
+nnoremap <Leader>4 :4b<CR>
+nnoremap <Leader>5 :5b<CR>
+nnoremap <Leader>6 :6b<CR>
+nnoremap <Leader>7 :7b<CR>
+nnoremap <Leader>8 :8b<CR>
+nnoremap <Leader>9 :9b<CR>
+nnoremap <Leader>0 :10b<CR>
