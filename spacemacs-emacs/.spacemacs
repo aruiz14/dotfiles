@@ -263,7 +263,8 @@ layers configuration. You are free to put any user code."
   (setq-default tab-width 8)
   (setq evil-shift-width 4)
   (setq-default js2-basic-offset 2
-                js-indent-level 2)
+                js-indent-level 2
+                js2-highlight-external-variables nil)
 
   ;; (autopair-global-mode)
   ;; (electric-pair-mode)

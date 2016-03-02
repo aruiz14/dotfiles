@@ -53,7 +53,7 @@ ZSH_CUSTOM=${ZSH}-custom
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git autojump colored-man colorize extract zsh-syntax-highlighting tmux fancy-ctrl-z)
+plugins=(common-aliases git autojump colored-man colorize extract zsh-syntax-highlighting tmux fancy-ctrl-z)
 
 if [[ "$OSTYPE" = darwin* ]] ; then
     plugins=($plugins osx brew)
@@ -103,7 +103,7 @@ source $ZSH/oh-my-zsh.sh
 alias rsync-fast="rsync -HAXxv --numeric-ids --progress -e \"ssh -T -c arcfour -o Compression=no -x\""
 fnd () {find . -name "*$1*"}
 alias tailf="tail -f -n 0"
-alias grep="grep -v grep | grep"
+grep () {command grep $@ | command grep -v grep}
 alias rgrep="grep -r -n --color=always"
 
 # Emacs configuration
