@@ -58,10 +58,6 @@ plugins=(common-aliases git autojump colored-man colorize extract zsh-syntax-hig
 if [[ "$OSTYPE" = darwin* ]] ; then
     plugins=($plugins osx brew)
 else
-    export COMPRESSIONALGORITHM=zip
-    export JAVA_HOME="/home/bitrock/java"
-    export PATH="/home/bitrock/.autojump/bin:$JAVA_HOME/bin:/home/bitrock/groovy/bin:/home/bitrock/node/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/local/arcanist/bin"
-    export NODE_PATH="/home/bitrock/harpoon-tests/harpoon2/harpoon_modules/:$NODE_PATH"
     if [[ -S "$SSH_AUTH_SOCK" && ! -h "$SSH_AUTH_SOCK" ]]; then
         ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock;
     fi
@@ -108,7 +104,7 @@ alias rgrep="grep -r -n --color=always"
 
 # Emacs configuration
 if [[ "$OSTYPE" != darwin* ]] ; then
-    PATH="/home/bitrock/emacs-24.5/build/bin:$PATH"
+    PATH="$HOME/emacs-24.5/build/bin:$PATH"
 fi
 
 _emacsd_is_running () {emacsclient --eval "(progn (ignore))" > /dev/null 2>&1}
