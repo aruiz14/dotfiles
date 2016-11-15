@@ -42,3 +42,7 @@
 	path = spacemacs-emacs/.emacs.d
 	url = https://github.com/syl20bnr/spacemacs
 	branch = master
+[submodule "vim-janus/.janus/lucario"]
+	path = vim-janus/.janus/lucario
+	url = https://github.com/raphamorim/lucario
+	branch = master
