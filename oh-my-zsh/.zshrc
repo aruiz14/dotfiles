@@ -68,6 +68,11 @@ fi
 export TZ=Europe/Madrid
 export EDITOR=vim
 
+# Configuration out of version control
+if [ -f ~/.extra.zshrc ] ; then
+    source ~/.extra.zshrc
+fi
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -145,11 +150,6 @@ emacs () {
 # alias emacs="emacsclient -t"
 alias vim="emacs"
 
-# Configuration out of version control
-if [ -f ~/.extra.zshrc ] ; then
-    source ~/.extra.zshrc
-fi
-
 # # 0 . Enter
 bindkey -s "^[Op" "0"
 bindkey -s "^[Ol" "."
@@ -183,3 +183,5 @@ source ~/.antigen.zsh
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-completions
 antigen bundle git
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
