@@ -10,7 +10,6 @@ values."
    ;; Base distribution to use. This is a layer contained in the directory
    ;; `+distribution'. For now available distributions are `spacemacs-base'
    ;; or `spacemacs'. (default 'spacemacs)
-   ;; dotspacemacs-distribution 'spacemacs-base
    dotspacemacs-distribution 'spacemacs
    ;; Lazy installation of layers (i.e. layers are installed only when a file
    ;; with a supported type is opened). Possible values are `all', `unused'
@@ -44,8 +43,10 @@ values."
      ;; ----------------------------------------------------------------
      helm
      auto-completion
-        ;; better-defaults
+     ;; better-defaults
+     emacs-lisp
      git
+     markdown
      org
      (shell :variables
             shell-default-height 30
@@ -53,13 +54,11 @@ values."
      (spell-checking :variables
                      spell-checking-enable-by-default nil)
      syntax-checking
-     ;; (colors :variables colors-enable-rainbow-identifiers t)
+     version-control
      osx
 
      ;; programing languages
-     emacs-lisp
      go
-     markdown
      html
      xml
      javascript
@@ -70,7 +69,7 @@ values."
      shell-scripts
      yaml
      ruby
-     ;; dockerfile
+     dockerfile
      groovy
 
      ;; extra
@@ -150,10 +149,11 @@ values."
    ;; the form `(list-type . list-size)`. If nil then it is disabled.
    ;; Possible values for list-type are:
    ;; `recents' `bookmarks' `projects' `agenda' `todos'."
-   dotspacemacs-startup-lists nil
+   ;; List sizes may be nil, in which case
    ;; `spacemacs-buffer-startup-lists-length' takes effect.
-   dotspacemacs-startup-lists '((recents . 5)
-                                (projects . 7))
+   ;; dotspacemacs-startup-lists '((recents . 5)
+   ;;                             (projects . 7))
+   dotspacemacs-startup-lists nil
    ;; True if the home buffer should respond to resize events.
    dotspacemacs-startup-buffer-responsive t
    ;; Default major mode of the scratch buffer (default `text-mode')
@@ -183,7 +183,7 @@ values."
                          leuven
                          monokai
                          zenburn)
-   ;; If non nil the cursor color matches the state color.
+   ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
@@ -192,7 +192,7 @@ values."
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
-   ;; The leader key (default "SPC")
+   ;; The leader key
    dotspacemacs-leader-key "," ;; "SPC"
    ;; The key used for Emacs commands (M-x) (after pressing on the leader key).
    ;; (default "SPC")
@@ -206,7 +206,7 @@ values."
    ;; pressing `<leader> m`. Set it to `nil` to disable it. (default ",")
    dotspacemacs-major-mode-leader-key "M-,"
    ;; Major mode leader key accessible in `emacs state' and `insert state'.
-   ;; (default "C-M-m)
+   ;; (default "C-M-m")
    dotspacemacs-major-mode-emacs-leader-key "C-M-m"
    ;; These variables control whether separate commands are bound in the GUI to
    ;; the key pairs C-i, TAB and C-m, RET.
@@ -388,16 +388,6 @@ you should place your code here."
   (if (and (not (display-graphic-p)) (eq system-type 'gnu/linux))
       (color-theme-approximate-on)
   )
-
-  ;; auto close bracket insertion. New in emacs 24
-  ;; (electric-pair-mode 1)
-  ;; make electric-pair-mode work on more brackets
-  ;;(setq electric-pair-pairs '(
-  ;;                            (?\" . ?\")
-  ;;                            (?\' . ?\')
-  ;;                            (?\{ . ?\})
-  ;;                            ) )
-
 )
 
 ;; Do not write anything past this comment. This is where Emacs will

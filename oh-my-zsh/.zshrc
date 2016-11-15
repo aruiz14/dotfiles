@@ -5,15 +5,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-#ZSH_THEME="robbyrussell"
-#ZSH_THEME="agnoster"
-if [[ "$OSTYPE" = darwin* ]] ; then
-    # ZSH_THEME="clean"
-    ZSH_THEME="honukai"
-else
-    # ZSH_THEME="re5et"
-    ZSH_THEME="honukai"
-fi
+ZSH_THEME="honukai"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -109,22 +101,12 @@ alias rgrep="grep -r -n --color=always"
 
 # Emacs configuration
 if [[ "$OSTYPE" != darwin* ]] ; then
-    PATH="$HOME/emacs-24.5/build/bin:$PATH"
+    PATH="$HOME/emacs-25.1/build/bin:$PATH"
 fi
 
 _emacsd_is_running () {emacsclient --eval "(progn (ignore))" > /dev/null 2>&1}
-_emacsd_start () {
-    command emacs --daemon
-}
 _emacsd_stop () {
     emacsclient --eval "(progn (setq kill-emacs-hook nil) (kill-emacs))"
-}
-emacsd-start () {
-    if ! _emacsd_is_running  ; then
-        _emacsd_start
-    else
-        echo "Emacs daemon already running"
-    fi
 }
 emacsd-stop () {
     if _emacsd_is_running ; then
@@ -138,14 +120,11 @@ emacsd-restart () {
         _emacsd_stop
         echo "Emacs daemon stopped"
     fi
-    _emacsd_start
+    command emacs --daemon
     echo "Emacs daemon started"
 }
 emacs () {
-    if ! _emacsd_is_running ; then
-        _emacsd_start
-    fi
-    emacsclient -t $@
+    command emacsclient -t --alternate-editor="" $@
 }
 # alias emacs="emacsclient -t"
 alias vim="emacs"
