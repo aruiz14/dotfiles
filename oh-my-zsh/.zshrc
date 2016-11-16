@@ -93,7 +93,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias rsync-fast="rsync -HAXxv --numeric-ids --progress -e \"ssh -T -c arcfour -o Compression=no -x\""
+alias rsync-fast="rsync -HAXxv --numeric-ids --progress -e \"ssh -T -c arcfour128 -o Compression=no -x\""
 fnd () {find . -name "*$1*"}
 alias tailf="tail -f -n 0"
 grep () {command grep $@ | command grep -v grep}
