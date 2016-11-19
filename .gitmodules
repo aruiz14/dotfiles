@@ -46,3 +46,27 @@
 	path = vim-janus/.janus/lucario
 	url = https://github.com/raphamorim/lucario
 	branch = master
+[submodule "vim-janus/.janus/vim-diminactive"]
+	path = vim-janus/.janus/vim-diminactive
+	url = https://github.com/blueyed/vim-diminactive
+	branch = master
+[submodule "vim-janus/.janus/vim-yankstack"]
+	path = vim-janus/.janus/vim-yankstack
+	url = https://github.com/maxbrunsfeld/vim-yankstack
+	branch = master
+[submodule "vim-janus/.janus/Nagelfar-Vim"]
+	path = vim-janus/.janus/Nagelfar-Vim
+	url = https://github.com/JessicaKMcIntosh/Nagelfar-Vim
+	branch = master
+[submodule "vim-janus/.janus/vim-over"]
+	path = vim-janus/.janus/vim-over
+	url = https://github.com/osyo-manga/vim-over
+	branch = master
+[submodule "vim-janus/.janus/vitality.vim"]
+	path = vim-janus/.janus/vitality.vim
+	url = https://github.com/sjl/vitality.vim
+	branch = master
+[submodule "vim-janus/.janus/Conque-Shell"]
+	path = vim-janus/.janus/Conque-Shell
+	url = https://github.com/vim-scripts/Conque-Shell
+	branch = master

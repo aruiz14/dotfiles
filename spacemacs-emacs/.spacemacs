@@ -88,7 +88,12 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(autopair relative-line-numbers color-theme-approximate)
+   dotspacemacs-additional-packages '(
+                                      autopair
+                                      relative-line-numbers
+                                      color-theme-approximate
+                                      evil-terminal-cursor-changer
+                                      )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -187,7 +192,7 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro"
+   dotspacemacs-default-font '("Inconsolata for Powerline"
                                :size 13
                                :weight normal
                                :width normal
@@ -335,7 +340,7 @@ values."
    ;; `trailing' to delete only the whitespace at end of lines, `changed'to
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
    ;; (default nil)
-   dotspacemacs-whitespace-cleanup nil
+   dotspacemacs-whitespace-cleanup 'trailing
    ))
 
 (defun dotspacemacs/user-init ()
@@ -369,6 +374,26 @@ you should place your code here."
                (format "%3d " (line-number-at-pos))
              (format "%3d " (abs offset)))
            ))
+
+  (setq xterm-mouse-mode nil)
+
+  ;; Enable jumping between matched tags
+  (global-evil-matchit-mode 1)
+
+  (setq vc-follow-symlinks t)
+
+  ;; Set camelCase sensitive-motion on
+  (spacemacs/toggle-camel-case-motion-globally-on)
+
+  ;; Colorize compilation buffer
+  ;; From http://stackoverflow.com/a/20788581
+  (ignore-errors
+    (require 'ansi-color)
+    (defun my-colorize-compilation-buffer ()
+      (when (eq major-mode 'compilation-mode)
+        (ansi-color-apply-on-region compilation-filter-start (point-max))))
+    (add-hook 'compilation-filter-hook 'my-colorize-compilation-buffer))
+
   ;; Use spaces but show existing ones as 8 spaces.
   (setq-default indent-tabs-mode nil) ; no tab characters in files
   (setq-default tab-width 8)
@@ -381,7 +406,10 @@ you should place your code here."
 
   ;; (autopair-global-mode)
   ;; (electric-pair-mode)
+  ;; Bind comment/uncomment action to / key
   (evil-leader/set-key "/" 'evilnc-comment-or-uncomment-lines)
+  ;; Bind escape key to qq
+  (setq-default evil-escape-key-sequence "qq")
   ;; Select last yanked text
   (evil-leader/set-key "V" 'exchange-point-and-mark)
   (define-key global-map (kbd "RET") 'newline-and-indent)
