@@ -55,6 +55,9 @@ au FileType javascript setl sw=2 sts=2 et
 let g:AutoClosePairs = {'(': ')', '{': '}', '[': ']', '"': '"', "'": "'", '#{': '}'}
 let g:AutoCloseProtectedRegions = ["Character"]
 
+let g:tagbar_autoclose = 1
+let g:tagbar_autofocus = 1
+
 "let g:syntastic_javascript_checkers = ['eslint']
 "let g:syntastic_json_checkers = ['jsonlint']
 "let g:syntastic_always_populate_loc_list = 1
@@ -90,6 +93,28 @@ colorscheme gruvbox
 set background=dark
 set t_Co=256
 let g:nrrw_rgn_wdth = 40
+
+" Plugin vim-diminactive
+let g:diminactive_enable_focus = 1
+
+" Plugin vim-yankstack
+nmap <leader>p <Plug>yankstack_substitute_older_paste
+nmap <leader>P <Plug>yankstack_substitute_newer_paste
+
+" Plugin vim-over
+nnoremap <Leader>o :OverCommandLine<CR>
+
+" Plugin vitality
+let g:vitality_fix_cursor = 0
+let g:vitality_always_assume_iterm = 1
+
+" Plugin Conque-Shell
+let g:ConqueTerm_StartMessages = 0
+let g:ConqueTerm_InsertOnEnter = 1
+let g:ConqueTerm_CWInsert = 1
+
+"TODO install nagelfar
+"autocmd FileType tcl compiler nagelfar
 
 source ~/.vimrc.tmux
 
