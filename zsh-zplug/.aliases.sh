@@ -28,3 +28,4 @@ emacs () {
 }
 
 alias vim="emacs"
+alias clip="nc -U ~/.clipper.sock"
