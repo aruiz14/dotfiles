@@ -108,12 +108,6 @@ if [[ "$OSTYPE" != darwin* ]] ; then
     export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock;
 fi
 
-# Emacs configuration
-if [[ "$OSTYPE" != darwin* ]] ; then
-    PATH="$HOME/emacs-25.1/build/bin:$PATH"
-fi
-
-
 # Configuration out of version control
 if [ -f ~/.extra.zshrc ] ; then
     source ~/.extra.zshrc

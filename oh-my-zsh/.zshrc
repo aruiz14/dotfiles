@@ -101,7 +101,7 @@ alias rgrep="grep -r -n --color=always"
 
 # Emacs configuration
 if [[ "$OSTYPE" != darwin* ]] ; then
-    PATH="$HOME/emacs-25.1/build/bin:$PATH"
+    PATH="$HOME/emacs-build/25.1/bin:$PATH"
 fi
 
 _emacsd_is_running () {emacsclient --eval "(progn (ignore))" > /dev/null 2>&1}
