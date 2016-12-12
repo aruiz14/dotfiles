@@ -39,15 +39,19 @@ done
 
 
 zplug "zsh-users/zsh-syntax-highlighting", nice:10
-zplug "zsh-users/zsh-completions"
+# zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-autosuggestions"
 
 zplug "djui/alias-tips", nice:12
+
+export ENHANCD_DISABLE_DOT=1
+export ENHANCD_DISABLE_HYPHEN=1
 zplug "b4b4r07/enhancd", use:init.sh
+
 zplug "supercrabtree/k"
-zplug "unixorn/tumult.plugin.zsh"
-zplug "unixorn/rake-completion.zshplugin"
-zplug "RobSis/zsh-completion-generator"
+# zplug "unixorn/tumult.plugin.zsh" # OSX tips
+# zplug "unixorn/rake-completion.zshplugin"
+# zplug "RobSis/zsh-completion-generator"
 zplug "srijanshetty/docker-zsh"
 zplug "peterhurford/git-it-on.zsh"
 
