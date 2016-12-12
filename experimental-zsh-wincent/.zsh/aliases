@@ -1,0 +1,54 @@
+#
+# Command aliases
+#
+
+alias ....='cd ../..'
+alias :e=vim
+alias :qa=exit
+alias :sp='test -n "$TMUX" && tmux split-window'
+alias :vs='test -n "$TMUX" && tmux split-window -h'
+alias :wq=exit
+alias a=ag
+alias b=bundle
+alias be='bundle exec'
+alias cd..='cd ..'
+alias cdtmp='cd $(mktemp -d $TMPDIR/$USER-cdtmp-XXXXXX)'
+alias clip='nc -U ~/.clipper.sock'
+alias d='hash -d'
+alias e=exit
+alias f='ssh -N -f sandbox-clipper'
+alias g=git
+alias groot='cd $(git rev-parse --show-toplevel 2> /dev/null || echo -n ".")'
+alias h=history
+alias j=jump
+alias k='rm -f ~/.ssh/glh@* && ssh sandbox rm -f .clipper.sock'
+alias l='ls -F'
+alias ll='ls -laF'
+alias m=mosh
+alias o='git oneline'
+alias p='git patch'
+alias oo='git oneline -10'
+alias s=ssh
+alias serve='python -m SimpleHTTPServer' # optional arg: port (defaults to 8000)
+alias t=tmux
+alias v=vim
+
+#
+# Suffix aliases
+# (eg. "foo.md" to open Markdown files in "Marked 2.app")
+#
+alias -s md='open -a "Marked 2.app"'
+
+#
+# Global aliases
+# (work at any position within the command line)
+#
+
+# Mnemonic: "[G]rep"
+alias -g G="|grep"
+
+# Mnemonic: "[L]ess"
+alias -g L="|less"
+
+# Mnemonic: "[R]eset"
+alias -g R=";clear;test -n "$TMUX" && tmux clear-history;"
