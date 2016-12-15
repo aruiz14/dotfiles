@@ -70,7 +70,6 @@ values."
      shell-scripts
      yaml
      ruby
-     dockerfile
      groovy
 
      ;; extra
@@ -78,6 +77,7 @@ values."
      games
      smex
      semantic
+     docker
 
      ;; vim ports
      vim-powerline
@@ -167,7 +167,9 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(lush
+   dotspacemacs-themes '(
+                         lush
+                         zen-and-art
                          twilight-anti-bright
                          seti
                          heroku
@@ -175,7 +177,6 @@ values."
                          sanityinc-tomorrow-night
                          misterioso
                          junio
-                         zen-and-art
                          material
                          molokai
                          wilson
@@ -414,9 +415,6 @@ you should place your code here."
   ;; Select last yanked text
   (evil-leader/set-key "V" 'exchange-point-and-mark)
   (define-key global-map (kbd "RET") 'newline-and-indent)
-  (if (and (not (display-graphic-p)) (eq system-type 'gnu/linux))
-      (color-theme-approximate-on)
-  )
 )
 
 ;; Do not write anything past this comment. This is where Emacs will

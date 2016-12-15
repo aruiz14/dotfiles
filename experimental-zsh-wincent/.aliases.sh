@@ -24,7 +24,11 @@ emacsd-restart () {
     echo "Emacs daemon started"
 }
 emacs () {
-    command emacsclient -t --alternate-editor="" $@
+    local p
+    p=`env echo $PATH`
+    # KONSOLE_DBUS_SESSION enables TrueColor support
+    # https://gist.githubusercontent.com/bsuh/bab7eeb8bda2421ac01c760c90668100/raw/bf8da47cba044249fe75ef1f6a1c78e208ef0e19/gistfile1.diff
+    PATH="$p" KONSOLE_DBUS_SESSION=true emacsclient -t --alternate-editor="" $@
 }
 
 alias vim="emacs"

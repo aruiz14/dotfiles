@@ -77,7 +77,8 @@ zplug "jhawthorn/fzy", \
       as:command, \
       hook-build:"make"
 
-zplug "~/.zshrc-wincent", from:local
+fpath=($HOME/.zsh/completions $fpath) # This has to load before zplug load:w
+zplug "~/.zshrc-wincent", from:local, nice:11
 
 # zplug "oskarkrawczyk/honukai-iterm-zsh", nice:15 # needs to be loaded after oh-my-zsh
 
