@@ -92,7 +92,7 @@ values."
    dotspacemacs-additional-packages '(
                                       autopair
                                       relative-line-numbers
-                                      color-theme-approximate
+                                      atom-one-dark-theme
                                       evil-terminal-cursor-changer
                                       )
    ;; A list of packages that cannot be updated.
@@ -168,6 +168,7 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
+                         atom-one-dark
                          lush
                          zen-and-art
                          twilight-anti-bright

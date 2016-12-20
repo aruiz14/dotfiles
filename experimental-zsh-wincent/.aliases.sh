@@ -20,7 +20,9 @@ emacsd-restart () {
         _emacsd_stop
         echo "Emacs daemon stopped"
     fi
-    command emacs --daemon
+    local p
+    p=`env echo $PATH`
+    PATH="$p" KONSOLE_DBUS_SESSION=true command emacs --daemon
     echo "Emacs daemon started"
 }
 emacs () {
