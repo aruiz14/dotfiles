@@ -68,7 +68,7 @@ zplug "junegunn/fzf-bin", \
 zplug "junegunn/fzf", as:command, \
       use:"bin/fzf-tmux"
 zplug "junegunn/fzf", use:shell/key-bindings.zsh, \
-      on:"junegunn/fzf-bin", nice:11
+      on:"junegunn/fzf-bin", nice:12
 
 zplug "b4b4r07/emoji-cli", \
       on:"stedolan/jq"
