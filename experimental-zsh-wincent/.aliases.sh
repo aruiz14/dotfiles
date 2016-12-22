@@ -33,5 +33,5 @@ emacs () {
     PATH="$p" KONSOLE_DBUS_SESSION=true emacsclient -t --alternate-editor="" $@
 }
 
-alias vim="emacs"
+alias vim="TERM=xterm-256color vim"
 alias clip="nc -U ~/.clipper.sock"
