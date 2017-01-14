@@ -6,13 +6,19 @@ set list lcs=tab:__,trail:.,extends:>,precedes:<
 
 set expandtab
 set showmatch
-set hlsearch
+
+set incsearch
 set ignorecase
 set smartcase
+set hlsearch
+nmap \q :nohlsearch<CR>
 
 set cursorline
-set hlsearch
 set viminfo^=!
+
+" Emacs-like tab completions menu
+set wildmenu
+set wildmode=list:longest,full
 
 ""from https://amix.dk/vim/vimrc.html
 " Set 7 lines to the cursor - when moving vertically using j/k
