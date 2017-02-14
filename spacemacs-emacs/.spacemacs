@@ -405,7 +405,8 @@ you should place your code here."
                 js-indent-level 2
                 js-switch-indent-offset 2
                 js2-strict-trailing-comma-warning nil
-                js2-highlight-external-variables nil)
+                js2-highlight-external-variables nil
+                go-tab-width 4)
 
   ;; (autopair-global-mode)
   ;; (electric-pair-mode)
