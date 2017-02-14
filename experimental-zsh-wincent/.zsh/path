@@ -1,13 +1,26 @@
+uname=$(uname)
+
 SYSTEM_PATH=$PATH
 unset PATH
 
 # keep these on separate lines to make changing their order easier
 PATH=$HOME/bin
 PATH=$PATH:$HOME/.zsh/bin
-PATH=$PATH:/usr/local/bin
-PATH=$PATH:/usr/local/sbin
+
+# Runtimes
+export PATH="$GOROOT/bin:$GOPATH/bin:$PATH"
+if [[ "$uname" = "Darwin" ]] ; then
+    export PATH="${HOME}/node/bin:$PATH"
+fi
+
+# Custom compiled tools
+if [[ "$uname" = "Linux" && -n "$SSH_TTY" && -d "$HOME/emacs-build/25.1/bin" ]] ; then
+    export PATH="$HOME/emacs-build/25.1/bin:$PATH"
+    export PATH="$HOME/tmux-build/2.3/bin:$PATH"
+    export PATH="$HOME/vim-build/8.0/bin:$PATH"
+fi
+
+# PATH=$PATH:/usr/local/bin
+# PATH=$PATH:/usr/local/sbin
 PATH=$PATH:$SYSTEM_PATH
-PATH=$PATH:$EC2_HOME/bin
-PATH=$PATH:$HOME/.local/bin
-PATH=$PATH:$HOME/.cabal/bin
 export PATH

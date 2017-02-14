@@ -6,8 +6,5 @@ export LC_CTYPE="${LANGUAGE}"
 export TZ=Europe/Madrid
 export EDITOR=vim
 
-if [[ "$(uname)" = "Linux" && -n "$SSH_TTY" && -d "$HOME/emacs-build/25.1/bin" ]] ; then
-    export PATH="$HOME/emacs-build/25.1/bin:$PATH"
-    export PATH="$HOME/tmux-build/2.3/bin:$PATH"
-    export PATH="$HOME/vim-build/8.0/bin:$PATH"
-fi
+export GOPATH="${HOME}/go/projects"
+export GOROOT="${HOME}/go/runtime"
