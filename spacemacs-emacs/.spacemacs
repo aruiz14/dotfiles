@@ -44,7 +44,7 @@ values."
      ;; ----------------------------------------------------------------
      helm
      auto-completion
-     ;; better-defaults
+     better-defaults
      emacs-lisp
      git
      markdown
@@ -56,12 +56,12 @@ values."
                      spell-checking-enable-by-default nil)
      syntax-checking
      version-control
-     osx
 
      ;; programing languages
      (go :variables
          gofmt-command "goimports"
          go-tab-width 4)
+
      html
      xml
      javascript
@@ -74,7 +74,6 @@ values."
      ruby
      groovy
 
-     ;; extra
      restclient
      games
      smex
@@ -82,7 +81,7 @@ values."
      docker
 
      ;; vim ports
-     vim-powerline
+     ;; vim-powerline
      ;; unimpaired
 
      themes-megapack
@@ -92,15 +91,15 @@ values."
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '(
+                                      ansi-color
                                       autopair
-                                      relative-line-numbers
                                       atom-one-dark-theme
                                       evil-terminal-cursor-changer
                                       )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '(flycheck-pos-tip)
+   dotspacemacs-excluded-packages '()
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
    ;; `used-only' installs only explicitly used packages and uninstall any
@@ -320,7 +319,7 @@ values."
    dotspacemacs-folding-method 'evil
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    ;; (default nil)
-   dotspacemacs-smartparens-strict-mode nil
+   dotspacemacs-smartparens-strict-mode t
    ;; If non-nil pressing the closing parenthesis `)' key in insert mode passes
    ;; over any automatically added closing parenthesis, bracket, quote, etc…
    ;; This can be temporary disabled by pressing `C-q' before `)'. (default nil)
@@ -328,7 +327,7 @@ values."
    ;; Select a scope to highlight delimiters. Possible values are `any',
    ;; `current', `all' or `nil'. Default is `all' (highlight any scope and
    ;; emphasis the current one). (default 'all)
-   dotspacemacs-highlight-delimiters 'all
+   dotspacemacs-highlight-delimiters 'current
    ;; If non nil, advise quit functions to keep server open when quitting.
    ;; (default nil)
    dotspacemacs-persistent-server nil
@@ -345,7 +344,7 @@ values."
    ;; `trailing' to delete only the whitespace at end of lines, `changed'to
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
    ;; (default nil)
-   dotspacemacs-whitespace-cleanup 'trailing
+   dotspacemacs-whitespace-cleanup 'changed
    ))
 
 (defun dotspacemacs/user-init ()
@@ -358,7 +357,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; By default, changing between vim and emacs bindings is set to C-z, which
   ;; makes more difficult to suspend the process.
   ;; Remapping it to Right-option key + "s", which enters the character "ß"
-  (progn (setq evil-toggle-key "ß"))
+  (setq evil-toggle-key "ß")
   )
 
 (defun dotspacemacs/user-config ()
@@ -368,10 +367,10 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-  (setq linum-format "%d ")
   (setq scroll-margin 7
         scroll-conservatively 9999
         scroll-step 1)
+  (setq linum-format "%3d ")
   (setq relative-line-numbers-format
         '(lambda (offset)
            "Another formatting function"
@@ -393,7 +392,6 @@ you should place your code here."
   ;; Colorize compilation buffer
   ;; From http://stackoverflow.com/a/20788581
   (ignore-errors
-    (require 'ansi-color)
     (defun my-colorize-compilation-buffer ()
       (when (eq major-mode 'compilation-mode)
         (ansi-color-apply-on-region compilation-filter-start (point-max))))
@@ -418,6 +416,10 @@ you should place your code here."
   ;; Select last yanked text
   (evil-leader/set-key "V" 'exchange-point-and-mark)
   (define-key global-map (kbd "RET") 'newline-and-indent)
+
+  ;; Change cursor shape on terminal
+  (unless (display-graphic-p)
+    (evil-terminal-cursor-changer-activate))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
