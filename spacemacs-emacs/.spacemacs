@@ -64,7 +64,12 @@ values."
 
      html
      xml
-     javascript
+     (javascript :variables
+                 js2-basic-offset 2
+                 js-indent-level 2
+                 js-switch-indent-offset 2
+                 js2-strict-trailing-comma-warning nil
+                 js2-highlight-external-variables nil)
      typescript
      latex
      php
@@ -92,8 +97,9 @@ values."
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '(
                                       ansi-color
-                                      autopair
                                       atom-one-dark-theme
+                                      darktooth-theme
+                                      doom-themes
                                       evil-terminal-cursor-changer
                                       )
    ;; A list of packages that cannot be updated.
@@ -169,7 +175,10 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
+                         doom-molokai
                          atom-one-dark
+                         doom-one
+                         darktooth
                          lush
                          zen-and-art
                          twilight-anti-bright
@@ -196,8 +205,8 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("Inconsolata for Powerline"
-                               :size 13
+   dotspacemacs-default-font '("Fira Code"
+                               :size 12
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -358,6 +367,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; makes more difficult to suspend the process.
   ;; Remapping it to Right-option key + "s", which enters the character "ß"
   (setq evil-toggle-key "ß")
+  (setq evil-search-module 'evil-search)
   )
 
 (defun dotspacemacs/user-config ()
@@ -401,18 +411,13 @@ you should place your code here."
   (setq-default indent-tabs-mode nil) ; no tab characters in files
   (setq-default tab-width 8)
   (setq evil-shift-width 4)
-  (setq-default js2-basic-offset 2
-                js-indent-level 2
-                js-switch-indent-offset 2
-                js2-strict-trailing-comma-warning nil
-                js2-highlight-external-variables nil)
 
-  ;; (autopair-global-mode)
-  ;; (electric-pair-mode)
   ;; Bind comment/uncomment action to / key
   (evil-leader/set-key "/" 'evilnc-comment-or-uncomment-lines)
+
   ;; Bind escape key to qq
   (setq-default evil-escape-key-sequence "qq")
+
   ;; Select last yanked text
   (evil-leader/set-key "V" 'exchange-point-and-mark)
   (define-key global-map (kbd "RET") 'newline-and-indent)
@@ -420,6 +425,15 @@ you should place your code here."
   ;; Change cursor shape on terminal
   (unless (display-graphic-p)
     (evil-terminal-cursor-changer-activate))
+
+  (setq doom-enable-bold t    ; if nil, bolding are universally disabled
+        doom-enable-italic t  ; if nil, italics are universally disabled
+
+        ;; doom-one specific settings
+        doom-one-brighter-modeline nil
+        doom-one-brighter-comments nil
+        )
+
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
