@@ -27,7 +27,7 @@ oh_my_zsh_plugins=(
     # autojump
     zsh-navigation-tool
     # Others
-    colored-man-pages colorize emoji jsontools tmux yarn
+    colored-man-pages colorize emoji jsontools tmux yarn kubectl
     # Aliases
     common-aliases docker-compose extract git git-extras
 )
