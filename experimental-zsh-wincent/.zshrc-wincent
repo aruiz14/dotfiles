@@ -88,6 +88,16 @@ setopt PROMPT_SUBST
 # Anonymous function to avoid leaking NBSP variable.
 function () {
   if [[ -n "$TMUX" ]]; then
+    local LVL=$(($SHLVL - 1))
+  else
+    local LVL=$SHLVL
+  fi
+  if [[ $EUID -eq 0 ]]; then
+    local SUFFIX=$(printf '#%.0s' {1..$LVL})
+  else
+    local SUFFIX=$(printf '\$%.0s' {1..$LVL})
+  fi
+  if [[ -n "$TMUX" ]]; then
     # Note use a non-breaking space at the end of the prompt because we can use it as
     # a find pattern to jump back in tmux.
     local NBSP=' '

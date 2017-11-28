@@ -4,7 +4,6 @@ export LC_ALL="${LANGUAGE}"
 export LC_CTYPE="${LANGUAGE}"
 
 export TZ=Europe/Madrid
-export EDITOR=vim
+export EDITOR=nvim
 
-export GOPATH="${HOME}/go/projects"
-export GOROOT="${HOME}/go/runtime"
+export GOROOT="${HOME}/go-runtime"

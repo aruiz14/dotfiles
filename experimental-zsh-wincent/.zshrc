@@ -3,7 +3,7 @@ export ZPLUG_HOME=$HOME/.zplug
 
 # First time clone
 if [[ ! -d $ZPLUG_HOME ]]; then
-    git clone https://github.com/zplug/zplug $ZPLUG_HOME
+    git clone https://github.com/zplug/zplug -b 2.3.3 $ZPLUG_HOME
     source $ZPLUG_HOME/init.zsh && zplug update --self
 else
     source $ZPLUG_HOME/init.zsh
@@ -116,6 +116,11 @@ fi
 # Load aliases
 if [ -f $HOME/.aliases.sh ] ; then
     source $HOME/.aliases.sh
+fi
+
+# Load .profile
+if [ -f $HOME/.profile ] ; then
+    source $HOME/.profile
 fi
 
 # # 0 . Enter
