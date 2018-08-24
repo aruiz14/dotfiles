@@ -3,7 +3,7 @@ export ZPLUG_HOME=$HOME/.zplug
 
 # First time clone
 if [[ ! -d $ZPLUG_HOME ]]; then
-    git clone https://github.com/zplug/zplug -b 2.3.3 $ZPLUG_HOME
+    git clone https://github.com/zplug/zplug $ZPLUG_HOME
     source $ZPLUG_HOME/init.zsh && zplug update --self
 else
     source $ZPLUG_HOME/init.zsh
@@ -15,8 +15,9 @@ autoload -Uz is-at-least # Fix for common-aliases plugin
 oh_my_zsh_libs=(
     directories
     key-bindings
+    compfix
 )
-for p in $oh_my_zsh_libs; do
+for p in $oh_my_zsh_libs[*]; do
     zplug "lib/$p", from:oh-my-zsh
 done
 
@@ -25,36 +26,34 @@ done
 oh_my_zsh_plugins=(
     # Navigation
     # autojump
-    zsh-navigation-tool
+    # zsh-navigation-tool
     # Others
-    colored-man-pages colorize emoji jsontools tmux yarn kubectl
+    colored-man-pages colorize jsontools docker docker-compose kubectl
+    # tmux
     # Aliases
-    common-aliases docker-compose extract git git-extras
+    common-aliases extract git git-extras
 )
 if [[ "$OSTYPE" = darwin* ]] ; then
-    plugins=($plugins osx brew brew-cask)
+    oh_my_zsh_plugins+=(osx brew brew-cask)
 fi
-for p in $oh_my_zsh_plugins; do
+for p in $oh_my_zsh_plugins[*]; do
     zplug "plugins/$p", from:oh-my-zsh
 done
 
 zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-autosuggestions"
-zplug "zsh-users/zsh-syntax-highlighting", nice:12
+zplug "zsh-users/zsh-syntax-highlighting", defer:3
 
-zplug "djui/alias-tips", nice:11
+# zplug "djui/alias-tips", defer:2
 
 export ENHANCD_DISABLE_DOT=1
 export ENHANCD_DISABLE_HYPHEN=1
 zplug "b4b4r07/enhancd", use:init.sh
 
-zplug "supercrabtree/k"
+# zplug "supercrabtree/k" # not compatible with kubectl
 # zplug "unixorn/tumult.plugin.zsh" # OSX tips
-# zplug "unixorn/rake-completion.zshplugin"
-# zplug "RobSis/zsh-completion-generator"
-zplug "srijanshetty/docker-zsh"
-zplug "peterhurford/git-it-on.zsh"
+# zplug "peterhurford/git-it-on.zsh" # open github
 
 zplug "stedolan/jq", \
       from:gh-r, \
@@ -68,20 +67,18 @@ zplug "junegunn/fzf-bin", \
 zplug "junegunn/fzf", as:command, \
       use:"bin/fzf-tmux"
 zplug "junegunn/fzf", use:shell/key-bindings.zsh, \
-      on:"junegunn/fzf-bin", nice:12
-
-zplug "b4b4r07/emoji-cli", \
-      on:"stedolan/jq"
+      on:"junegunn/fzf-bin", defer:3
 
 zplug "jhawthorn/fzy", \
       as:command, \
       hook-build:"make"
 
-fpath=($HOME/.zsh/completions $fpath) # This has to load before zplug load:w
-zplug "~/.zshrc-wincent", from:local, nice:11
+fpath=($HOME/.zsh/completions $fpath)
+fpath=($HOME/git-subrepo/share/zsh-completion $fpath)
+# This has to load before zplug loads
+source ~/.zshrc-wincent
 
 # zplug "oskarkrawczyk/honukai-iterm-zsh", nice:15 # needs to be loaded after oh-my-zsh
-
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -92,15 +89,9 @@ if ! zplug check --verbose; then
 fi
 
 # Then, source plugins and add commands to $PATH
-zplug load --verbose
+zplug load # --verbose
 
-# HISTSIZE=10000
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-
+# Reuse SSH auth sock
 if [[ "$OSTYPE" != darwin* ]] ; then
     if [[ -S "$SSH_AUTH_SOCK" && ! -h "$SSH_AUTH_SOCK" ]]; then
         ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock;
@@ -108,20 +99,15 @@ if [[ "$OSTYPE" != darwin* ]] ; then
     export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock;
 fi
 
-# Configuration out of version control
-if [ -f ~/.extra.zshrc ] ; then
-    source ~/.extra.zshrc
-fi
+optional_files=(
+    ~/.extra.zshrc
+    ~/.aliases.sh
+    ~/.profile
+)
 
-# Load aliases
-if [ -f $HOME/.aliases.sh ] ; then
-    source $HOME/.aliases.sh
-fi
-
-# Load .profile
-if [ -f $HOME/.profile ] ; then
-    source $HOME/.profile
-fi
+for f in $optional_files[*]; do
+    test -f $f && source $f
+done
 
 # # 0 . Enter
 bindkey -s "^[Op" "0"

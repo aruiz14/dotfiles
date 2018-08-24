@@ -36,7 +36,34 @@ emacs () {
     PATH="$p" TERM=xterm-24bits emacsclient -t --alternate-editor="" $@
 }
 
+upgrade_go () {
+    (
+        cd "${HOME}"
+        local v=${1:?a valid version must be provided}
+        local dest=".go-versions/go-${v}"
+
+        local os
+        os=$(uname -s | tr '[:upper:]' '[:lower:]')
+        local url="https://dl.google.com/go/go${v}.${os}-amd64.tar.gz"
+
+        mkdir -p "${dest}"
+        cd "${dest}"
+        curl -SsL "${url}" | tar zx --strip-components 1 -C .
+        cd -
+
+        unlink go-runtime || true
+        ln -s "${dest}" go-runtime
+        go version
+    )
+}
+
 alias vim="nvim"
 alias vi="nvim"
 alias vimdiff="nvim -d"
 alias clip="nc -U ~/.clipper.sock"
+
+# Timestamp
+timestamp() {
+    while IFS= read -r line; do printf '[%s] %s\n' "$(date '%H:%M:%S')" "$line"; done
+}
+alias -g TS="|timestamp"

@@ -29,6 +29,8 @@ alias mkdir='nocorrect mkdir'
 alias mv='nocorrect mv'
 alias stack='nocorrect stack'
 alias sudo='nocorrect sudo'
+alias bazel='nocorrect bazel'
+alias docker='nocorrect docker'
 
 #
 # Prompt
