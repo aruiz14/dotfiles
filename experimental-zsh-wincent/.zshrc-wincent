@@ -31,6 +31,7 @@ alias stack='nocorrect stack'
 alias sudo='nocorrect sudo'
 alias bazel='nocorrect bazel'
 alias docker='nocorrect docker'
+alias go='nocorrect go'
 
 #
 # Prompt

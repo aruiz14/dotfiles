@@ -37,6 +37,9 @@ export LESSPROMPT='?f%f .?ltLine %lt:?pt%pt\%:?btByte %bt:-...'
 # X = suppress alternate screen
 export LESS=iFMRSX
 
+# better debugging trace (-x)
+export PS4='+ (${BASH_SOURCE}:${LINENO}): ${FUNCNAME[0]:+${FUNCNAME[0]}(): }'
+
 # for the benefit of CPAN and potentially others
 export FTP_PASSIVE=1
 
