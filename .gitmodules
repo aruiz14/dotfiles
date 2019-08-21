@@ -73,3 +73,6 @@
 [submodule "vim-janus/.janus/vim-one"]
 	path = vim-janus/.janus/vim-one
 	url = https://github.com/rakr/vim-one
+[submodule "vim-janus/.janus/vim-hust"]
+	path = vim-janus/.janus/vim-hust
+	url = https://github.com/vim-utils/vim-husk

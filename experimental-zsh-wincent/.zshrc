@@ -135,3 +135,6 @@ bindkey '^[^[[D' backward-word
 bindkey '^[^[[C' forward-word
 bindkey '^[[1;10D' beginning-of-line
 bindkey '^[[1;10C' end-of-line
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:/bitnami/subversionstack-linux-x64/output/rvm/bin"
