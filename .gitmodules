@@ -76,3 +76,6 @@
 [submodule "vim-janus/.janus/vim-hust"]
 	path = vim-janus/.janus/vim-hust
 	url = https://github.com/vim-utils/vim-husk
+[submodule "space-vim/.space-vim"]
+	path = space-vim/.space-vim
+	url = https://github.com/liuchengxu/space-vim.git
