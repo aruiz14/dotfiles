@@ -79,3 +79,9 @@
 [submodule "space-vim/.space-vim"]
 	path = space-vim/.space-vim
 	url = https://github.com/liuchengxu/space-vim.git
+[submodule "spacevim/.SpaceVim"]
+	path = spacevim/.SpaceVim
+	url = https://github.com/SpaceVim/SpaceVim.git
+[submodule "spacevim/.cache/vimfiles/repos/github.com/Shougo/dein.vim"]
+	path = spacevim/.cache/vimfiles/repos/github.com/Shougo/dein.vim
+	url = https://github.com/Shougo/dein.vim.git
