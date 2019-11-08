@@ -11,7 +11,7 @@
     # set spacevim theme. by default colorscheme layer is not loaded,
     # if you want to use more colorscheme, please load the colorscheme
     # layer
-    colorscheme = "gruvbox"
+    colorscheme = "one"
     colorscheme_bg = "dark"
     # Disable guicolors in basic mode, many terminal do not support 24bit
     # true colors
@@ -34,3 +34,51 @@ auto-completion-tab-key-behavior = "smart"
 name = 'shell'
 default_position = 'top'
 default_height = 30
+
+[[layers]]
+name = "colorscheme"
+[[layers]]
+name = "operator"
+[[layers]]
+name = "fzf"
+[[layers]]
+name = "denite"
+[[layers]]
+name = "git"
+[[layers]]
+name = "test"
+
+[[layers]]
+name="lang#go"
+[[layers]]
+name="lang#dockerfile"
+[[layers]]
+name="lang#groovy"
+[[layers]]
+name="lang#java"
+[[layers]]
+name="lang#javascript"
+[[layers]]
+name="lang#json"
+[[layers]]
+name="lang#markdown"
+[[layers]]
+name="lang#lua"
+[[layers]]
+name="lang#php"
+[[layers]]
+name="lang#python"
+[[layers]]
+name="lang#ruby"
+[[layers]]
+name="lang#rust"
+[[layers]]
+name="lang#sh"
+[[layers]]
+name="lang#tcl"
+[[layers]]
+name="lang#toml"
+[[layers]]
+name="lang#typescript"
+[[layers]]
+name="lang#xml"
