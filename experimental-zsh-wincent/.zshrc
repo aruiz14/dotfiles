@@ -60,14 +60,12 @@ zplug "stedolan/jq", \
       as:command, \
       rename-to:jq
 
-zplug "junegunn/fzf-bin", \
-      from:gh-r, \
-      as:command, \
-      rename-to:fzf
 zplug "junegunn/fzf", as:command, \
       use:"bin/fzf-tmux"
-zplug "junegunn/fzf", use:shell/key-bindings.zsh, \
-      on:"junegunn/fzf-bin", defer:3
+zplug "junegunn/fzf", \
+      use:shell/key-bindings.zsh, \
+      hook-build:"./install --bin", \
+      defer:3
 
 zplug "jhawthorn/fzy", \
       as:command, \
@@ -138,3 +136,5 @@ bindkey '^[[1;10C' end-of-line
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:/bitnami/subversionstack-linux-x64/output/rvm/bin"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

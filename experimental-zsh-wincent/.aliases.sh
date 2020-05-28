@@ -1,5 +1,5 @@
 alias rsync-fast="rsync -HAXxv --numeric-ids --progress -e \"ssh -T -c arcfour128 -o Compression=no -x\""
-fnd () {find . -name "*$1*"}
+fnd () {find ${2-.} -iname "*$1*"}
 alias tailf="tail -f -n 0"
 unalias grep
 grep () {
@@ -60,10 +60,11 @@ upgrade_go () {
 alias vim="nvim"
 alias vi="nvim"
 alias vimdiff="nvim -d"
-alias clip="nc -U ~/.clipper.sock"
+alias clip="nc -U ~/.clipper.sock -w0"
 
 # Timestamp
 timestamp() {
     while IFS= read -r line; do printf '[%s] %s\n' "$(date '+%H:%M:%S')" "$line"; done
 }
 alias -g TS="|timestamp"
+alias date_gofmt="date -u +%Y-%m-%dT%H:%M:%SZ"

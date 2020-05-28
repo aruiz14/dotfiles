@@ -15,23 +15,6 @@ let g:spacevim_layers = [
 \ ]
 
 " Added by me:
-" Useful
-let g:spacevim_layers += [
-      \ 'syntax-checking',
-      \ 'editing',
-      \ 'programming',
-      \ 'text-align',
-      \ 'better-motion',
-      \ 'formatting',
-      \ 'ctrlp',
-      \ 'git',
-      \ 'file-manager',
-      \ 'airline',
-\ ]
-
-" TODO: decide which one to use
-let g:spacevim_layers += [ 'auto-completion' ]
-" let g:spacevim_layers += [ 'deoplete']
 
 " Languages
 let g:spacevim_layers += [
@@ -45,11 +28,35 @@ let g:spacevim_layers += [
       \ 'typescript',
 \ ]
 
+" Useful
+let g:spacevim_layers += [
+      \ 'file-manager',
+      \ 'syntax-checking',
+      \ 'programming',
+      \ 'editing',
+      \ 'lsp',
+      \ 'text-align',
+      \ 'better-motion',
+      \ 'formatting',
+      \ 'ctrlp',
+      \ 'git',
+      \ 'airline',
+\ ]
+
+" TODO: decide which one to use
+let g:spacevim_layers += [ 'unite' ]
+let g:spacevim_layers += [ 'auto-completion' ]
+" let g:spacevim_layers += [ 'deoplete']
+
 " Uncomment the following line if your terminal(-emulator) supports true colors.
-" let g:spacevim_enable_true_color = 1
+let g:spacevim_enable_true_color = 1
 
 " Uncomment the following if you have some nerd font installed.
-" let g:spacevim_nerd_fonts = 1
+let g:spacevim_nerd_fonts = 1
+
+" Trying to fix issue with brackets
+" https://github.com/liuchengxu/space-vim/issues/398
+let g:spacevim_lsp_engine = 'coc'
 
 " If you want to have more control over the layer, try using Layer command.
 " if g:spacevim.gui
@@ -62,7 +69,11 @@ function! UserInit()
 
   " Add your own plugin via Plug command.
   Plug 'junegunn/seoul256.vim'
+  Plug 'rakr/vim-one'
+  Plug 'google/vim-jsonnet'
 
+  nnoremap gd :only<bar>vsplit<CR>gd
+  call JanusMappings()
 endfunction
 
 " Override the default settings from space-vim as well as adding extras
@@ -70,11 +81,92 @@ function! UserConfig()
 
   " Override the default settings.
   " Uncomment the following line to disable relative number.
-  " set norelativenumber
+  set norelativenumber
+
+  set wrap
 
   " Adding extras.
   " Uncomment the following line If you have installed the powerline fonts.
   " It is good for airline layer.
-  " let g:airline_powerline_fonts = 1
+  let g:airline_powerline_fonts = 1
 
+  " Theme
+  let g:one_allow_italics = 1
+  set background=dark " for the dark version
+  colorscheme one
+  if (has("termguicolors"))
+    set termguicolors
+  endif
+
+  " Faster which key
+  set timeoutlen=200
+
+  " [CtrlP] If a file is already open, open it again in a new pane instead of switching to the existing pane
+  let g:ctrlp_switch_buffer = 'et'
+
+  " Disable newline when pressing enter on autocomplete
+  inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
+
+  " https://github.com/wincent/wincent/blob/master/roles/dotfiles/files/.vim/plugin/nerdtree.vim
+  " Disable display of '?' text and 'Bookmarks' label.
+  let g:NERDTreeMinimalUI=1
+  " Single-click to toggle directory nodes, double-click to open non-directory
+  " nodes
+  let g:NERDTreeMouseMode=2
+
+  " Change working directory to current file
+  autocmd BufEnter * silent! lcd %:p:h
+
+  " " Let coc.nvim handle GoToDefinitions
+  " let g:go_def_mapping_enabled = 0
+
+  " " From https://github.com/neoclide/coc.nvim
+  " " if hidden is not set, TextEdit might fail.
+  " set hidden
+
+  " " Some servers have issues with backup files, see #649
+  " set nobackup
+  " set nowritebackup
+
+  " " Better display for messages
+  " set cmdheight=2
+
+  " " You will have bad experience for diagnostic messages when it's default 4000.
+  " set updatetime=300
+
+  " " don't give |ins-completion-menu| messages.
+  " set shortmess+=c
+
+  " " always show signcolumns
+  " set signcolumn=yes
+  " "END coc.nvim
+  
+  " Disable automatic line wrapping
+  autocmd FileType python,go,jsonnet setlocal textwidth=0
+
+  let g:jsonnet_fmt_options = '-n 4'
+endfunction
+
+" FROM https://github.com/carlhuda/janus/blob/60e6864fbd60dc8efa9dc4c6de40b7615452814c/janus/vim/core/before/plugin/mappings.vim
+function! JanusMappings()
+  " Toggle paste mode
+  nmap <silent> <F4> :set invpaste<CR>:set paste?<CR>
+  imap <silent> <F4> <ESC>:set invpaste<CR>:set paste?<CR>
+  
+  " cd to the directory containing the file in the buffer
+  nmap <silent> <leader>cd :lcd %:h<CR>
+
+  " Some helpers to edit mode
+  " http://vimcasts.org/e/14
+  cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
+  map <leader>ew :e %%
+  map <leader>es :sp %%
+  map <leader>ev :vsp %%
+  map <leader>et :tabe %%
+
+  " find merge conflict markers
+  nmap <silent> <leader>fc <ESC>/\v^[<=>]{7}( .*\|$)<CR>
+
+  " Adjust viewports to the same size
+  map <Leader>= <C-w>=
 endfunction
