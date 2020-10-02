@@ -78,6 +78,8 @@ endfunction
 
 " Override the default settings from space-vim as well as adding extras
 function! UserConfig()
+  " Disable sharing system clipboard
+  set clipboard=
 
   " Override the default settings.
   " Uncomment the following line to disable relative number.
