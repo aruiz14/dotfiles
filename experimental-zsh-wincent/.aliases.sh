@@ -68,3 +68,5 @@ timestamp() {
 }
 alias -g TS="|timestamp"
 alias date_gofmt="date -u +%Y-%m-%dT%H:%M:%SZ"
+
+alias kubecfgsort="yq -y -s 'sort_by(\"\(.kind)/\(.metadata.name)\")| .[]'"

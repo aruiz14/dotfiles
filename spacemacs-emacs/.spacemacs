@@ -83,6 +83,7 @@ values."
      shell-scripts
      yaml
      ruby
+     java
      groovy
      bazel
 
@@ -410,6 +411,10 @@ you should place your code here."
                (format "%3d " (line-number-at-pos))
              (format "%3d " (abs offset)))
            ))
+
+  ;; TODO: force `C-c o` in helm's find files to open vertically
+  ;; (setq split-width-threshold nil
+  ;;       split-height-threshold 80)
 
   (setq xterm-mouse-mode nil)
 

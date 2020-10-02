@@ -42,8 +42,6 @@ name = "operator"
 [[layers]]
 name = "fzf"
 [[layers]]
-name = "denite"
-[[layers]]
 name = "git"
 [[layers]]
 name = "test"
@@ -82,3 +80,7 @@ name="lang#toml"
 name="lang#typescript"
 [[layers]]
 name="lang#xml"
+
+# Custom layers
+[[layers]]
+name="lang#bazel"
