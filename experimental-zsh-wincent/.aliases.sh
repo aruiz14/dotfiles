@@ -72,3 +72,14 @@ alias -g TS="|timestamp"
 alias date_gofmt="date -u +%Y-%m-%dT%H:%M:%SZ"
 
 alias kubecfgsort="yq -y -s 'sort_by(\"\(.kind)/\(.metadata.name)\")| .[]'"
+
+unalias gcm
+gcm() {
+  for branch in develop production stable design main master; do
+    if git rev-parse -q --verify "${branch}" >/dev/null; then
+      gco "${branch}" $@
+      return
+    fi
+  done
+  gco master $@
+}
