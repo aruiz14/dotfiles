@@ -44,7 +44,9 @@ upgrade_go () {
 
         local os
         os=$(uname -s | tr '[:upper:]' '[:lower:]')
-        local url="https://dl.google.com/go/go${v}.${os}-amd64.tar.gz"
+        local arch
+        arch=$(uname -m | sed 's/x86_64/amd64/')
+        local url="https://dl.google.com/go/go${v}.${os}-${arch}.tar.gz"
 
         mkdir -p "${dest}"
         cd "${dest}"
