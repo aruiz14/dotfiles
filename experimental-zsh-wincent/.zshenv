@@ -7,3 +7,4 @@ export TZ=Europe/Madrid
 export EDITOR=nvim
 
 export GOROOT="${HOME}/go-runtime"
+. "$HOME/.cargo/env"

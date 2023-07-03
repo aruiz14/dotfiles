@@ -8,17 +8,6 @@ export PAGER=less
   # export EDITOR=vim
 # fi
 
-case "$(uname)" in
-  Darwin*)
-    if [ -x /usr/libexec/java_home ]; then
-      export JAVA_HOME=$(/usr/libexec/java_home)
-    fi
-    ;;
-  Linux*)
-    # export JAVA_HOME=/usr/lib/jvm/jre-1.6.0-openjdk.x86_64
-    ;;
-esac
-
 # usually this means running on a machine with a statically-linked, hand-built
 # tmux (and ncurses)
 if [ -d "$HOME/share/terminfo" ]; then
