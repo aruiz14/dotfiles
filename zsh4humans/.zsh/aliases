@@ -1,0 +1,40 @@
+#
+# Command aliases
+#
+
+alias clip='nc -U ~/.clipper.sock'
+alias g=git
+alias groot='cd $(git rev-parse --show-toplevel 2> /dev/null || echo -n ".")'
+alias h=history
+alias l='ls -F'
+alias ll='ls -laF'
+
+alias rsync-fast="rsync -HAXxv --numeric-ids --progress -e \"ssh -T -c arcfour128 -o Compression=no -x\""
+alias tailf="tail -f -n 0"
+alias rgrep="grep -r -n"
+alias vim="nvim"
+alias vi="nvim"
+alias vimdiff="nvim -d"
+alias clip="nc -U ~/.clipper.sock -w0"
+alias date_gofmt="date -u +%Y-%m-%dT%H:%M:%SZ"
+alias kubecfgsort="yq -y -s 'sort_by(\"\(.kind)/\(.metadata.name)\")| .[]'"
+
+#
+# Suffix aliases
+# (eg. "foo.md" to open Markdown files in "Marked 2.app")
+#
+# alias -s md='open -a "Marked 2.app"'
+
+#
+# Global aliases
+# (work at any position within the command line)
+#
+
+# Mnemonic: "[G]rep"
+alias -g G="|grep"
+
+# Mnemonic: "[L]ess"
+alias -g L="|less"
+
+alias -g TS="|timestamp"
+

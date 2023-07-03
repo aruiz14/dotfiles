@@ -1,0 +1,94 @@
+# Until .agrc exists...
+# (https://github.com/ggreer/the_silver_searcher/pull/709)
+function ag() {
+  emulate -L zsh
+
+  # italic blue paths, pink line numbers, underlined purple matches
+  command ag --pager="less -iFMRSX" --color-path=34\;3 --color-line-number=35 --color-match=35\;1\;4 "$@"
+}
+
+function history() {
+  emulate -L zsh
+
+  # This is a function because Zsh aliases can't take arguments.
+  local DEFAULT=-1000
+  builtin history ${1:-$DEFAULT}
+}
+
+function tmux() {
+  emulate -L zsh
+
+  # Make sure even pre-existing tmux sessions use the latest SSH_AUTH_SOCK.
+  # (Inspired by: https://gist.github.com/lann/6771001)
+  local SOCK_SYMLINK=~/.ssh/ssh_auth_sock
+  if [ -r "$SSH_AUTH_SOCK" -a ! -L "$SSH_AUTH_SOCK" ]; then
+    ln -sf "$SSH_AUTH_SOCK" $SOCK_SYMLINK
+  fi
+
+  # If provided with args, pass them through.
+  if [[ -n "$@" ]]; then
+    env SSH_AUTH_SOCK=$SOCK_SYMLINK tmux "$@"
+    return
+  fi
+
+  # Attach to existing session, or create one, based on current directory.
+  SESSION_NAME=$(basename "$(pwd)")
+  env SSH_AUTH_SOCK=$SOCK_SYMLINK tmux new -A -s "$SESSION_NAME"
+}
+
+# Bounce the Dock icon, if iTerm does not have focus.
+function bounce() {
+  if [ -n "$TMUX" ]; then
+    print -Pn "\ePtmux;\e\e]1337;RequestAttention=1\a\e\\"
+  else
+    print -Pn "\e]1337;RequestAttention=1\a"
+  fi
+}
+
+function fnd () {
+    find ${2-.} -iname "*$1*"
+}
+
+function grep () {
+    command grep --color=always "$@" | command grep -v grep
+}
+
+function timestamp() {
+    while IFS= read -r line; do printf '[%s] %s\n' "$(date '+%H:%M:%S')" "$line"; done
+}
+
+function upgrade_go () {
+    (
+        cd "${HOME}"
+        local v=${1:?a valid version must be provided}
+        local dest=".go-versions/go-${v}"
+
+        local os
+        os=$(uname -s | tr '[:upper:]' '[:lower:]')
+        local arch
+        arch=$(uname -m | sed 's/x86_64/amd64/')
+        local url="https://dl.google.com/go/go${v}.${os}-${arch}.tar.gz"
+
+        mkdir -p "${dest}"
+        curl -SsL "${url}" | tar zx --strip-components 1 -C "${dest}"
+
+        unlink go-runtime || true
+        ln -s "${dest}" go-runtime
+        go version
+    )
+}
+
+unalias gcm
+function gcm() {
+  for branch in develop production stable design main master; do
+    if git rev-parse -q --verify "${branch}" >/dev/null; then
+      gco "${branch}" $@
+      return
+    fi
+  done
+  gco master $@
+}
+
+function check_port_in_use() {
+  lsof -i -P -n | grep $1
+}

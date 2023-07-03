@@ -1,0 +1,47 @@
+export PAGER=less
+
+# filename (if known), line number if known, falling back to percent if known,
+# falling back to byte offset, falling back to dash
+export LESSPROMPT='?f%f .?ltLine %lt:?pt%pt\%:?btByte %bt:-...'
+
+# i = case-insensitive searches, unless uppercase characters in search string
+# F = exit immediately if output fits on one screen
+# M = verbose prompt
+# R = ANSI color support
+# S = chop long lines (rather than wrap them onto next line)
+# X = suppress alternate screen
+export LESS=iFMRSX
+
+# better debugging trace (-x)
+export PS4='+ (${BASH_SOURCE}:${LINENO}): ${FUNCNAME[0]:+${FUNCNAME[0]}(): }'
+
+# for the benefit of CPAN and potentially others
+export FTP_PASSIVE=1
+
+# colour ls listings
+export CLICOLOR=true
+
+export LANGUAGE="en_US.UTF-8"
+export LANG="${LANGUAGE}"
+export LC_ALL="${LANGUAGE}"
+export LC_CTYPE="${LANGUAGE}"
+
+export TZ=Europe/Madrid
+export EDITOR=nvim
+
+#
+# History
+#
+
+export HISTSIZE=100000
+export HISTFILE="$HOME/.history"
+export SAVEHIST=$HISTSIZE
+
+export SPROMPT="zsh: correct %F{red}'%R'%f to %F{red}'%r'%f [%B%Uy%u%bes, %B%Un%u%bo, %B%Ue%u%bdit, %B%Ua%u%bbort]? "
+
+export GOROOT="${HOME}/go-runtime"
+export PATH="${GOROOT}/bin:${PATH}"
+export GOPATH=$(go env GOPATH)
+export PATH="${GOPATH}/bin:${PATH}"
+export PATH="${HOMEBREW_PREFIX}/opt/node@16/bin:$PATH"
+. "$HOME/.cargo/env"
