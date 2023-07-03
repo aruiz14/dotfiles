@@ -44,19 +44,19 @@ let g:spacevim_layers += [
 \ ]
 
 " TODO: decide which one to use
-let g:spacevim_layers += [ 'unite' ]
-let g:spacevim_layers += [ 'auto-completion' ]
+" let g:spacevim_layers += [ 'unite' ]
+" let g:spacevim_layers += [ 'auto-completion' ]
 " let g:spacevim_layers += [ 'deoplete']
 
 " Uncomment the following line if your terminal(-emulator) supports true colors.
-let g:spacevim_enable_true_color = 1
+" let g:spacevim_enable_true_color = 1
 
 " Uncomment the following if you have some nerd font installed.
 let g:spacevim_nerd_fonts = 1
 
 " Trying to fix issue with brackets
 " https://github.com/liuchengxu/space-vim/issues/398
-let g:spacevim_lsp_engine = 'coc'
+" let g:spacevim_lsp_engine = 'coc'
 
 " If you want to have more control over the layer, try using Layer command.
 " if g:spacevim.gui
@@ -70,6 +70,7 @@ function! UserInit()
   " Add your own plugin via Plug command.
   Plug 'junegunn/seoul256.vim'
   Plug 'rakr/vim-one'
+  Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
   Plug 'google/vim-jsonnet'
 
   nnoremap gd :only<bar>vsplit<CR>gd
@@ -94,8 +95,10 @@ function! UserConfig()
 
   " Theme
   let g:one_allow_italics = 1
+  set background=light " for the bright version
   set background=dark " for the dark version
-  colorscheme one
+  " colorscheme one
+  colorscheme challenger_deep
   if (has("termguicolors"))
     set termguicolors
   endif
